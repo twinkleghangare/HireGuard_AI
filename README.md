@@ -5,11 +5,11 @@
 [![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen?style=flat-square\&logo=mongodb)](https://www.mongodb.com/)
 [![OpenAI](https://img.shields.io/badge/AI-OpenAI-orange?style=flat-square\&logo=openai)](https://openai.com/)
 
-**HireGuard AI** is an AI-powered recruitment and candidate verification system that helps recruiters analyze resumes, verify candidate information, identify possible fraud, and conduct AI-based technical interviews.
+**HireGuard AI** is an AI-powered recruitment and candidate verification system developed to help recruiters analyze resumes, verify candidate information, detect possible fraud, and conduct AI-based technical interviews.
 
-The system uses multiple specialized AI agents to analyze different aspects of a candidate and combines their results to generate an overall **candidate integrity and risk assessment**.
+The system uses multiple specialized AI agents to analyze different aspects of a candidate and combines the results to generate a **candidate integrity and risk assessment**.
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/878ee9a9-8c16-4a2f-9fdc-1c6c780d451a" />
+<img width="1920" height="1080" alt="HireGuard AI Dashboard" src="https://github.com/user-attachments/assets/878ee9a9-8c16-4a2f-9fdc-1c6c780d451a" />
 
 ---
 
@@ -17,22 +17,20 @@ The system uses multiple specialized AI agents to analyze different aspects of a
 
 ### 🤖 Multi-Agent Verification
 
-HireGuard AI uses different AI agents for different verification tasks:
+HireGuard AI uses multiple specialized agents for candidate verification:
 
-* Resume Intelligence
-* Employment Verification
-* Technical Intelligence
-* Risk Assessment
-
-Each agent focuses on a specific part of the candidate verification process.
+* **Resume Intelligence** — analyzes and extracts information from resumes.
+* **Employment Verification** — analyzes employment history and career progression.
+* **Technical Intelligence** — evaluates technical skills and supporting evidence.
+* **Risk Assessment** — combines verification results to generate the final risk assessment.
 
 ### 🎙️ AI-Based Technical Interview
 
-The system can conduct AI-based technical interviews and generate questions according to the candidate's skills and responses.
+The system provides an AI-based technical interview experience where questions can be generated according to the candidate's skills and responses.
 
 ### 📄 Resume Analysis
 
-Recruiters can upload a PDF resume and the system extracts important information such as:
+Recruiters can upload a PDF resume and extract important candidate information such as:
 
 * Skills
 * Education
@@ -43,34 +41,34 @@ Recruiters can upload a PDF resume and the system extracts important information
 
 ### 🛡️ Fraud & Risk Detection
 
-The system analyzes the extracted information to identify:
+The system analyzes candidate information and identifies possible issues such as:
 
 * Inconsistent information
 * Suspicious career timelines
-* Possible skill mismatches
+* Skill mismatches
 * Employment-related red flags
 * Other potential verification risks
 
-### 📊 Analytics Dashboard
+### 📊 Candidate Analytics
 
-The dashboard provides useful candidate insights such as:
+The dashboard provides candidate-related insights including:
 
 * Integrity score
 * Risk score
-* Candidate performance
-* Failure trends
 * Verification results
+* Candidate performance
 * Interview performance
+* Failure trends
 
-### ✨ Modern UI
+### ✨ Modern User Interface
 
-The frontend is designed using **React, Tailwind CSS, and Framer Motion** with a responsive and modern interface.
+The frontend uses **React, Tailwind CSS, and Framer Motion** to provide a responsive and interactive user interface.
 
 ---
 
 ## 🧠 How HireGuard AI Works
 
-The basic workflow of the system is:
+The overall workflow of the system is:
 
 ```text
 Candidate Resume
@@ -79,18 +77,18 @@ Candidate Resume
        ↓
 Structured Candidate Data
        ↓
+    AI Agents
+       ↓
  ┌─────────────────────────┐
- │     AI Agent System     │
- ├─────────────────────────┤
  │ Resume Intelligence     │
  │ Employment Verification │
  │ Technical Intelligence  │
  │ Risk Assessment         │
  └─────────────────────────┘
        ↓
-Agent Results
+   Agent Results
        ↓
-Final Risk & Integrity Score
+Risk & Integrity Assessment
        ↓
 Recruiter Dashboard
 ```
@@ -99,16 +97,16 @@ Recruiter Dashboard
 
 ## 🏗️ Agentic Intelligence Architecture
 
-The main component of HireGuard AI is the **Agent Orchestrator**.
+The core of HireGuard AI is the **Agent Orchestrator**.
 
-It coordinates multiple specialized agents and combines their results.
+The orchestrator manages the different AI agents and coordinates their outputs to generate a final candidate assessment.
 
-| Agent                       | Main Responsibility                                                                           |
-| --------------------------- | --------------------------------------------------------------------------------------------- |
-| **Resume Intelligence**     | Extracts candidate information and performs initial resume analysis.                          |
-| **Employment Verification** | Analyzes employment history and career progression.                                           |
-| **Technical Intelligence**  | Evaluates technical skills and checks technical evidence such as GitHub activity.             |
-| **Risk Assessment**         | Combines the results from different agents and generates the final risk/integrity assessment. |
+| Agent                       | Responsibility                                                                      |
+| --------------------------- | ----------------------------------------------------------------------------------- |
+| **Resume Intelligence**     | Extracts candidate information and performs initial resume analysis.                |
+| **Employment Verification** | Analyzes employment history and career progression.                                 |
+| **Technical Intelligence**  | Evaluates technical skills and supporting technical evidence.                       |
+| **Risk Assessment**         | Combines the agent results and generates the overall risk and integrity assessment. |
 
 ---
 
@@ -132,18 +130,20 @@ It coordinates multiple specialized agents and combines their results.
 * MongoDB
 * Mongoose
 
-### AI
+### AI & Data Processing
 
 * OpenAI API
 * Agent-based AI architecture
-
-### Other Technologies
-
-* PDF parsing
-* JWT authentication
+* Resume parsing
+* PDF processing
+* NLP-based analysis
 * GitHub data analysis
-* Resume processing
-* Candidate analytics
+
+### Authentication & Security
+
+* JWT Authentication
+* Secure password handling
+* Protected API routes
 
 ---
 
@@ -187,13 +187,13 @@ HireGuard-AI/
 
 ## ⚙️ Requirements
 
-Before running the project, make sure you have:
+Make sure the following are installed before running the project:
 
 * **Node.js v18 or above**
+* **npm**
+* **Git**
 * **MongoDB Atlas or MongoDB Local**
-* **OpenAI API Key**
-* Git
-* npm
+* **OpenAI API access**
 
 ---
 
@@ -211,96 +211,79 @@ cd HireGuard-AI
 ```bash
 cd backend
 npm install
-```
-
-Create a `.env` file inside the `backend` folder and add the required environment variables.
-
-Then start the backend:
-
-```bash
 npm run dev
 ```
 
+Configure the required backend settings locally before starting the server.
+
 ### 3. Setup Frontend
 
-Open another terminal:
+Open a new terminal:
 
 ```bash
 cd frontend
 npm install
-```
-
-Create a `.env` file inside the `frontend` folder with the required API configuration.
-
-Then run:
-
-```bash
 npm run dev
 ```
 
-The frontend will normally be available through the Vite development server.
+The frontend will start using the Vite development server.
 
----
-
-## 🔐 Environment Variables
-
-### Backend
-
-Example:
-
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-OPENAI_API_KEY=your_openai_api_key
-JWT_SECRET=your_jwt_secret
-```
-
-### Frontend
-
-Example:
-
-```env
-VITE_API_BASE_URL=http://localhost:5000
-```
-
-> Do not upload your `.env` files or API keys to GitHub.
+> **Security:** Keep API keys, database credentials, authentication secrets, and other private configuration files local. Do not commit `.env` files to GitHub.
 
 ---
 
 ## 🎯 Project Objective
 
-The main objective of **HireGuard AI** is to reduce the manual effort involved in candidate screening and verification.
+The main objective of **HireGuard AI** is to make the candidate screening and verification process faster and more efficient.
 
-Instead of checking every candidate manually, recruiters can use the system to:
+The system helps recruiters:
 
-1. Upload a candidate's resume.
+1. Upload candidate resumes.
 2. Extract important candidate information.
-3. Run multiple verification agents.
+3. Analyze candidate data using multiple AI agents.
 4. Identify inconsistencies and possible risks.
-5. Analyze technical skills.
-6. Conduct an AI-based interview.
-7. View the final candidate assessment through the dashboard.
+5. Evaluate technical skills.
+6. Conduct AI-based technical interviews.
+7. View candidate results through a centralized dashboard.
+
+---
+
+## 💡 Why HireGuard AI?
+
+Traditional recruitment processes can require recruiters to manually review large numbers of resumes and verify candidate information.
+
+HireGuard AI provides an automated approach by combining:
+
+* **AI-based resume analysis**
+* **Multi-agent verification**
+* **Technical skill analysis**
+* **Fraud and risk detection**
+* **AI-based interviews**
+* **Candidate analytics**
+
+This helps recruiters make more informed decisions during the initial screening process.
 
 ---
 
 ## 🔮 Future Scope
 
-Some planned improvements include:
+The project can be further improved with:
 
 * Candidate Trust Score
 * Candidate ranking and percentile
 * Genuine vs. suspicious candidate comparison
 * Skill-gap analysis
 * AI mock interview chatbot
-* More advanced employment verification
+* Advanced employment verification
 * Improved fraud detection models
 * Automated candidate recommendations
+* More detailed candidate reports
 
 ---
 
 ## 👥 Team
 
-**HireGuard AI** was developed as a team project with the goal of applying **AI, Machine Learning, NLP, and full-stack development** to a real-world recruitment problem.
+**HireGuard AI** was developed as a team project focused on solving a real-world recruitment problem using **Artificial Intelligence, Machine Learning, NLP, and Full-Stack Development**.
 
 ---
 
@@ -312,7 +295,7 @@ See the `LICENSE` file for more information.
 
 ---
 
-## ⭐ Project
+## ⭐ Support
 
 If you find this project useful or interesting, consider giving the repository a ⭐ on GitHub.
 
