@@ -10,8 +10,7 @@
 The system uses multiple specialized AI agents to analyze different aspects of a candidate and combines the results to generate a **candidate integrity and risk assessment**.
 
 <img width="1920" height="1080" alt="HireGuard AI Dashboard" src="https://github.com/user-attachments/assets/878ee9a9-8c16-4a2f-9fdc-1c6c780d451a" />
-<img width="320" height="320" alt="image" src="https://github.com/user-attachments/assets/95831f11-bd88-4a96-96b5-40af0e26e1f1" />
-
+https://www.image2url.com/r2/default/videos/1789186857723-bd3d0b2f-b9c6-4fd8-9c17-2c0f243bf834.mp4
 
 ---
 
