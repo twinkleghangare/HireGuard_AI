@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Settings as SettingsIcon, Key, Bell, CreditCard, Plus, Trash2, Copy, CheckCircle2, AlertTriangle, Loader2 } from "lucide-react";
+import { Settings as SettingsIcon, Shield, Key, Bell, CreditCard, Plus, Trash2, Copy, CheckCircle2, AlertTriangle, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 

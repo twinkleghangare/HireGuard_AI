@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Candidate from '../models/Candidate.js';
 
 // @desc    Get all candidates for logged in user
@@ -37,18 +38,23 @@ export const getCandidateById = async (req, res) => {
 // @access  Private
 export const getAnalytics = async (req, res) => {
     try {
-        const userId = req.user._id;
+        const ownerObjectId = new mongoose.Types.ObjectId(String(req.user.id || req.user._id));
 
         // 1. Calculate Core Metrics: Total Processed, Avg Risk, High-Risk Count
         const metricsPipeline = await Candidate.aggregate([
-            { $match: { ownerId: userId } },
+            { $match: { ownerId: ownerObjectId } },
+            {
+                $addFields: {
+                    computedRisk: { $ifNull: ["$riskScore", "$riskData.fraudProbability", 0] }
+                }
+            },
             {
                 $group: {
                     _id: null,
                     totalResumes: { $sum: 1 },
-                    averageRisk: { $avg: "$riskScore" },
+                    averageRisk: { $avg: "$computedRisk" },
                     highRiskCount: {
-                        $sum: { $cond: [{ $gt: ["$riskScore", 70] }, 1, 0] }
+                        $sum: { $cond: [{ $gt: ["$computedRisk", 70] }, 1, 0] }
                     }
                 }
             },
@@ -56,7 +62,7 @@ export const getAnalytics = async (req, res) => {
                 $project: {
                     _id: 0,
                     totalResumes: 1,
-                    averageRisk: { $round: ["$averageRisk", 1] }, // Round to 1 decimal
+                    averageRisk: { $ifNull: [{ $round: ["$averageRisk", 1] }, 0] }, // Round to 1 decimal
                     highRiskPercentage: {
                         $cond: [
                             { $eq: ["$totalResumes", 0] },
@@ -73,7 +79,7 @@ export const getAnalytics = async (req, res) => {
         // 2. Calculate 6-Month Hiring Trend Graph (Counts per month)
         // Groups candidate ingestions by month/year of their createdAt timestamp
         const trendPipeline = await Candidate.aggregate([
-            { $match: { ownerId: userId } },
+            { $match: { ownerId: ownerObjectId } },
             {
                 $group: {
                     _id: {

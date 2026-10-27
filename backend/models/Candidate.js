@@ -39,6 +39,10 @@ const candidateSchema = new mongoose.Schema({
         type: Object,
         default: {}
     },
+    riskScore: {
+        type: Number,
+        default: 0
+    },
     finalScore: {
         type: Number,
         default: 0

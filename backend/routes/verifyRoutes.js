@@ -33,19 +33,24 @@ router.post("/upload", protect, upload.array("resumes"), async (req, res, next) 
                 };
 
                 // Asynchronously Upsert into MongoDB tied to the securely verified req.user.id
-                await Candidate.findOneAndUpdate(
-                    {
-                        ownerId: req.user.id,
-                        'structuredData.name': verificationResult?.structuredData?.name || file.originalname
-                    },
-                    {
-                        ownerId: req.user.id,
-                        ...candidatePayload
-                    },
-                    { upsert: true, new: true, setDefaultsOnInsert: true }
-                ).catch((err) => console.error("Candidate DB Save Error:", err));
+                let savedCandidate = null;
+                try {
+                    savedCandidate = await Candidate.findOneAndUpdate(
+                        {
+                            ownerId: req.user.id,
+                            'structuredData.name': verificationResult?.structuredData?.name || file.originalname
+                        },
+                        {
+                            ownerId: req.user.id,
+                            ...candidatePayload
+                        },
+                        { upsert: true, new: true, setDefaultsOnInsert: true }
+                    );
+                } catch (err) {
+                    console.error("Candidate DB Save Error:", err);
+                }
 
-                return candidatePayload;
+                return savedCandidate ? savedCandidate.toObject() : candidatePayload;
             })
         );
 

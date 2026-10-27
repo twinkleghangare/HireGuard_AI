@@ -54,7 +54,7 @@ export default function CandidateReport() {
             <div className="relative min-h-screen bg-[#07090E] text-slate-200 pt-32 pb-6 px-6 md:px-10 flex flex-col items-center justify-center font-sans">
                 <div className="glass-card p-10 max-w-lg text-center rounded-3xl border border-rose-500/20 bg-rose-500/5">
                     <AlertCircle className="w-12 h-12 text-rose-500 mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-white mb-2">Payload Unavilable</h2>
+                    <h2 className="text-xl font-bold text-white mb-2">Payload Unavailable</h2>
                     <p className="text-slate-400 font-medium mb-8">{error}</p>
                     <button
                         onClick={() => navigate('/candidates')}

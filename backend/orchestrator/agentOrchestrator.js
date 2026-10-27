@@ -48,6 +48,8 @@ export const runVerification = async (resumeText) => {
         employmentData,
         techData,
         riskData,
-        fraudAnalysis
+        fraudAnalysis,
+        riskScore: riskData?.fraudProbability || 0,
+        finalScore: riskData?.confidenceScore || 0
     };
 };

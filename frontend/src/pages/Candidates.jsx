@@ -136,11 +136,11 @@ export default function Candidates() {
                                     <div className="flex items-center gap-3 text-sm text-slate-300">
                                         <Code2 className="w-4 h-4 text-blue-400 shrink-0" />
                                         <div className="flex gap-1.5 flex-wrap">
-                                            {candidate.techData?.claimedStack?.slice(0, 3).map((tech, i) => (
-                                                <span key={i} className="px-2 py-0.5 bg-white/5 rounded text-xs font-semibold">{tech}</span>
+                                            {(candidate.techData?.claimedStack || candidate.structuredData?.skills || []).slice(0, 3).map((tech, i) => (
+                                                <span key={i} className="px-2 py-0.5 bg-white/5 rounded text-xs font-semibold">{typeof tech === 'string' ? tech : tech.name || tech.skill || JSON.stringify(tech)}</span>
                                             ))}
-                                            {candidate.techData?.claimedStack?.length > 3 && (
-                                                <span className="px-2 py-0.5 bg-white/5 rounded text-xs font-semibold">+{candidate.techData.claimedStack.length - 3}</span>
+                                            {(candidate.techData?.claimedStack || candidate.structuredData?.skills || []).length > 3 && (
+                                                <span className="px-2 py-0.5 bg-white/5 rounded text-xs font-semibold">+{(candidate.techData?.claimedStack || candidate.structuredData?.skills || []).length - 3}</span>
                                             )}
                                         </div>
                                     </div>

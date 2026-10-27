@@ -40,11 +40,20 @@ app.use(cors({
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-mongoose.connect(process.env.MONGO_URI)
+const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/hireguard";
+
+if (!process.env.MONGO_URI) {
+    console.warn("⚠️ MONGO_URI is not set in environment. Defaulting to local MongoDB:", mongoUri);
+}
+
+mongoose.connect(mongoUri)
     .then(() => console.log("✅ MongoDB Connected"))
     .catch(err => {
         console.error("❌ MongoDB Connection Error:", err.message);
-        process.exit(1);
+        console.warn("💡 Tip: Make sure MongoDB is running locally or provide a valid MONGO_URI (e.g. MongoDB Atlas connection string) in your backend/.env file.");
+        if (process.env.NODE_ENV === "production") {
+            process.exit(1);
+        }
     });
 
 app.get("/api/health", (req, res) => {

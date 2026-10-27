@@ -13,6 +13,7 @@ export default function CandidateInterview() {
     const [isTyping, setIsTyping] = useState(false);
     const [status, setStatus] = useState("Loading..."); // Loading, Pending, In Progress, Completed, Error
 
+    const API_URL = import.meta.env.VITE_API_BASE_URL || "";
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -26,7 +27,7 @@ export default function CandidateInterview() {
     useEffect(() => {
         const fetchInterviewContext = async () => {
             try {
-                const response = await axios.get(`/api/interview/${id}`);
+                const response = await axios.get(`${API_URL}/api/interview/${id}`);
                 const data = response.data.candidate;
                 setCandidate(data);
 
@@ -48,13 +49,13 @@ export default function CandidateInterview() {
         };
 
         fetchInterviewContext();
-    }, [id]);
+    }, [id, API_URL]);
 
     const startInterview = async () => {
         setIsTyping(true);
         try {
             // Send empty message to trigger the greeting/first question from the agent
-            const response = await axios.post(`/api/interview/${id}/chat`, { message: "START_INTERVIEW" });
+            const response = await axios.post(`${API_URL}/api/interview/${id}/chat`, { message: "START_INTERVIEW" });
             setMessages(response.data.transcript);
             setStatus(response.data.status);
         } catch (error) {
@@ -79,7 +80,7 @@ export default function CandidateInterview() {
         setIsTyping(true);
 
         try {
-            const response = await axios.post(`/api/interview/${id}/chat`, { message: userMsg });
+            const response = await axios.post(`${API_URL}/api/interview/${id}/chat`, { message: userMsg });
             setMessages(response.data.transcript);
             setStatus(response.data.status);
         } catch (error) {
